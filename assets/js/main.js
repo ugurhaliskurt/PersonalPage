@@ -6,7 +6,6 @@
 */
 (function() {
   "use strict";
-
   /**
    * Easy selector helper function
    */
@@ -94,6 +93,17 @@
     select('body').classList.toggle('mobile-nav-active')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
+  })
+
+  /** 
+   * stockViewer
+  */
+   on('click', '.stockViewer', function(e) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:34568');
+    xhr.setRequestHeader('Host', 'https://tool.domain.com');
+    xhr.send();
+  
   })
 
   /**
