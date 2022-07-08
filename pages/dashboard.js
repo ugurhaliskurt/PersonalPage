@@ -24,7 +24,7 @@ function sendRequest()
         if( index % 3 === 0 )
         {
             obj = new Object();
-            obj.Name = document.querySelectorAll(".stockInput")[index].value;
+            obj.Name = document.querySelectorAll(".stockInput")[index].value.toUpperCase();
         }
         else if( index % 3 === 1 )
         {
