@@ -1,10 +1,9 @@
 document.querySelector(".addicon").addEventListener("click", addIconClick);
 function addIconClick()
 {
-    alert("ugur");
     // Find a <table> element with id="myTable":
 
-    $(".table").append($(".tableNewLine").clone());
+    $(".table").append($("#tableNewLine").clone());
 }
 
 document.querySelector(".btn-submit").addEventListener("click", sendRequest);
@@ -17,17 +16,27 @@ function sendRequest()
     xmlHttp.setRequestHeader("Content-Type", "application/json");
     xmlHttp.setRequestHeader('Access-Control-Allow-Origin', '*');
 
-    xmlHttp.onreadystatechange = function () {
-   if (xmlHttp.readyState === 4) {
-      console.log(xmlHttp.status);
-      console.log(xmlHttp.responseText);
-   }};
-    var data = `{
-        "Id": 78912,
-        "Customer": "Jason Sweet",
-        "Quantity": 1,
-        "Price": 18.00
-      }`;
+    var numberOfelement = document.querySelectorAll(".stockInput").length;
+    var data = [];
+    var obj;
+    for (let index = 0; index < numberOfelement; index++) {
+        const element = document.querySelectorAll(".stockInput")[0].value;
+        if( index % 3 === 0 )
+        {
+            obj = new Object();
+            obj.Name = document.querySelectorAll(".stockInput")[index].value;
+        }
+        else if( index % 3 === 1 )
+        {
+            obj.Money = document.querySelectorAll(".stockInput")[index].value;
+        }
+        else
+        {
+            obj.Date = document.querySelectorAll(".stockInput")[index].value;
+            data.push(obj);
+        }
+    }
+    console.log(JSON.stringify(data));
     xmlHttp.send(JSON.stringify(data) );
     return xmlHttp.responseText;
 
