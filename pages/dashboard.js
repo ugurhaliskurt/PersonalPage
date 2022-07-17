@@ -11,6 +11,11 @@ function sendRequest()
 {
 
     var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == XMLHttpRequest.DONE) {
+            console.log(JSON.stringify(JSON.parse(xmlHttp.responseText)));
+        }
+    }
     xmlHttp.open( "POST", 'http://127.0.0.1:34568', true ); // false for synchronous request
     xmlHttp.setRequestHeader("Accept", "application/json");
     xmlHttp.setRequestHeader("Content-Type", "application/json");
@@ -39,5 +44,4 @@ function sendRequest()
     console.log(JSON.stringify(data));
     xmlHttp.send(JSON.stringify(data) );
     return xmlHttp.responseText;
-
 }
